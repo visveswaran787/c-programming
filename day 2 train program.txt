@@ -1,0 +1,30 @@
+#include <stdio.h>
+int main() {
+    int train_number;
+    int num_tickets;
+    int base_fare = 150; // Base fare from Trichy to Coimbatore
+    int total_fare;
+    int passenger_age;
+    int pnr_start = 1000; // Starting PNR number for simplicity
+    int pnr_generated;
+    printf("Welcome to Trichy to Coimbatore Train Ticket Booking (Numerical Only)\n");
+    printf("Enter Train Number (e.g., 1 for Express, 2 for Passenger): ");
+    scanf("%d", &train_number);
+    printf("Enter number of tickets to book: ");
+    scanf("%d", &num_tickets);
+    total_fare = base_fare * num_tickets;
+    if (num_tickets > 0)
+        printf("Enter age of the first passenger (for fare calculation, if applicable): ");
+        scanf("%d", &passenger_age);
+        if (passenger_age < 12) {
+            total_fare = total_fare - (total_fare / 4);
+    }
+    pnr_generated = pnr_start + (train_number * 100) + num_tickets;
+    printf("\n--- Booking Summary ---\n");
+    printf("Train Number: %d\n", train_number);
+    printf("Number of Tickets: %d\n", num_tickets);
+    printf("Total Fare: %d INR\n", total_fare);
+    printf("Generated PNR: %d\n", pnr_generated);
+    printf("Thank you for booking!\n");
+    return 0;
+}
