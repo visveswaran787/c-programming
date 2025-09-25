@@ -1,0 +1,12 @@
+#include <stdio.h>
+int main() {
+    int a;
+    float b;
+    char c;
+    printf("Enter the a");
+    scanf("%d", &a);
+    printf("Enter the b");
+    scanf("%f", &b);
+    printf("Enter the c");
+    scanf("%c", &c);
+} 
