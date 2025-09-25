@@ -1,0 +1,33 @@
+#include <stdio.h>
+int main() {
+    int choice, num, i;
+    printf("--- Multiplication Table Generator ---\n");
+    printf("Enter a choice (1-9) to see its multiplication table:\n");
+    printf("Or enter 0 to exit.\n");
+    printf("Your choice: ");
+    scanf("%d", &choice);
+    switch (choice) {
+        case 1:
+        case 2:
+        case 3:
+        case 4:
+        case 5:
+        case 6:
+        case 7:
+        case 8:
+        case 9:
+            num = choice;
+            printf("\nMultiplication Table of %d:\n", num);
+            for (i = 1; i <= 10; i++) {
+                printf("%d x %d = %d\n", num, i, num * i);
+            }
+            break;
+        case 0:
+            printf("Exiting the program.\n");
+            break;
+        default:
+            printf("Invalid choice. Please enter a number between 0 and 9.\n");
+            break;
+    }
+    return 0;
+}
