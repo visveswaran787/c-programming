@@ -1,0 +1,47 @@
+#include <stdio.h>
+#include <limits.h> 
+int findSecondLargest(int arr[], int n) {
+    if (n < 2) {
+        printf("Array must have at least two elements to find the second largest.\n");
+        return INT_MIN; 
+    }
+    int largest = INT_MIN;
+    int secondLargest = INT_MIN;
+    for (int i = 0; i < n; i++) {
+        if (arr[i] > largest) {
+            secondLargest = largest; 
+            largest = arr[i];        
+        } else if (arr[i] > secondLargest && arr[i] != largest) {
+            secondLargest = arr[i];
+        }
+    }
+    return secondLargest;
+}
+int main() {
+    int arr[] = {12, 35, 1, 10, 34, 1};
+    int n = sizeof(arr) / sizeof(arr[0]);
+    int secondLargest = findSecondLargest(arr, n);
+
+    if (secondLargest == INT_MIN) {
+        printf("Could not find a valid second largest element (e.g., array too small or all elements are same).\n");
+    } else {
+        printf("The second largest element is: %d\n", secondLargest);
+    }
+    int arr2[] = {5, 5, 5, 5};
+    int n2 = sizeof(arr2) / sizeof(arr2[0]);
+    secondLargest = findSecondLargest(arr2, n2);
+    if (secondLargest == INT_MIN) {
+        printf("Could not find a valid second largest element for arr2 (e.g., array too small or all elements are same).\n");
+    } else {
+        printf("The second largest element for arr2 is: %d\n", secondLargest);
+    }
+    int arr3[] = {10};
+    int n3 = sizeof(arr3) / sizeof(arr3[0]);
+    secondLargest = findSecondLargest(arr3, n3);
+    if (secondLargest == INT_MIN) {
+        printf("Could not find a valid second largest element for arr3 (e.g., array too small or all elements are same).\n");
+    } else {
+        printf("The second largest element for arr3 is: %d\n", secondLargest);
+    }
+    return 0;
+}

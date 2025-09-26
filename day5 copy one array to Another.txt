@@ -1,0 +1,15 @@
+#include <stdio.h>
+int main() {
+    int Array[] = {110, 210, 310, 410, 510};
+    int n = sizeof(Array) / sizeof(Array[4]); 
+    int destinationArray[n]; 
+    for (int i = 0; i < n; i++) {
+        destinationArray[i] = Array[i];
+    }
+    printf("Elements of the destination array: ");
+    for (int i = 0; i < n; i++) {
+        printf("%d ", destinationArray[i]);
+    }
+    printf("\n");
+    return 0;
+}
