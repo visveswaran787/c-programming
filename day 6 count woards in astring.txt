@@ -1,0 +1,61 @@
+#include <stdio.h>
+#include <string.h>
+#include <stdlib.h> 
+char* one[] = { "", "one ", "two ", "three ", "four ", "five ", "six ", "seven ", "eight ", "nine ", "ten ", "eleven ", "twelve ", "thirteen ", "fourteen ", "fifteen ", "sixteen ", "seventeen ", "eighteen ", "nineteen " };
+char* ten[] = { "", "", "twenty ", "thirty ", "forty ", "fifty ", "sixty ", "seventy ", "eighty ", "ninety " };
+char* numToWords(int n, char* suffix) {
+    char* str = (char*)malloc(100 * sizeof(char)); // Allocate memory dynamically
+    if (str == NULL) {
+        perror("Memory allocation failed");
+        exit(EXIT_FAILURE);
+    }
+    str[0] = '\0'; 
+    if (n > 19) {
+        strcat(str, ten[n / 10]);
+        strcat(str, one[n % 10]);
+    } else {
+        strcat(str, one[n]);
+    }
+
+    if (n) {
+        strcat(str, suffix);
+    }
+    return str;
+}
+char* convertToWords(long n) {
+    char* result = (char*)malloc(500 * sizeof(char)); // Allocate memory for the result string
+    if (result == NULL) {
+        perror("Memory allocation failed");
+        exit(EXIT_FAILURE);
+    }
+    result[0] = '\0';
+    char* temp_str;
+    temp_str = numToWords((n / 10000000), "crore ");
+    strcat(result, temp_str);
+    free(temp_str);
+    temp_str = numToWords(((n / 100000) % 100), "lakh ");
+    strcat(result, temp_str);
+    free(temp_str);
+    temp_str = numToWords(((n / 1000) % 100), "thousand ");
+    strcat(result, temp_str);
+    free(temp_str);
+    temp_str = numToWords(((n / 100) % 10), "hundred ");
+    strcat(result, temp_str);
+    free(temp_str);
+    if (n > 100 && (n % 100)) {
+        strcat(result, "and ");
+    }
+    temp_str = numToWords((n % 100), "");
+    strcat(result, temp_str);
+    free(temp_str);
+    return result;
+}
+int main() {
+    long num;
+    printf("Enter any number: ");
+    scanf("%ld", &num);
+    char* words = convertToWords(num);
+    printf("Number in words: %s\n", words);
+    free(words); 
+    return 0;
+}
